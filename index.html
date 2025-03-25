@@ -5,8 +5,35 @@
 </head>
 <body>
 
-<h1>My First Heading</h1>
-<p>My first paragraph.</p>
+<h1>Practical 10</h1>
+<p>%%writefile print_num.c 
+#include <stdio.h> 
+#include <ctype.h> 
+ 
+void printNumbersFromFile(const char *filename) { 
+    FILE *file = fopen(filename, "r"); 
+    if (!file) { 
+        printf("Error opening file: %s\n", filename); 
+        return; 
+    } 
+    char ch; 
+    while ((ch = fgetc(file)) != EOF) { 
+        if (isdigit(ch)) { 
+            while (isdigit(ch)) { 
+                printf("%c", ch); 
+                ch = fgetc(file); 
+            } 
+            printf("\n"); 
+        } 
+    } 
+ 
+    fclose(file); 
+} 
+ 
+int main() { 
+    char filename[] = "input.txt"; // Change to your file name 
+    printNumbersFromFile(filename); 
+    return 0; }</p>
 
 </body>
 </html>
